@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import styles from './App.css';
 
 class App extends Component {
@@ -7,7 +6,7 @@ class App extends Component {
     console.log('props on Parent: ', this.props);
     return (
       <div className={`${styles.App}`}>
-        DUDE
+        hello
         <br />
         <br />
         <br />
@@ -47,7 +46,16 @@ const Child  = (props) => {
 };
 
 class Countdown extends Component {
-  render() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: ""
+    }
+    this.tidyTime = this.tidyTime.bind(this);
+
+    setInterval(this.tidyTime, 20)
+  }
+   tidyTime() {
     const arrive = new Date('September 12, 2018 06:05:00 GMT +10')
     // from https://gist.github.com/remino/1563878
     function convertMS(ms) {
@@ -59,17 +67,23 @@ class Countdown extends Component {
       m = m % 60;
       d = Math.floor(h / 24);
       h = h % 24;
+      ms = ms % 1000;
+
       return (
-        d + " Days " + m + " Minutes " + s + " Seconds "
+        d + " Days, " + m + " Minutes, " + s + " Seconds, " + ms + " Fast seconds"
       );
     }
-    console.log(convertMS(2418131631));
+    this.setState({count: convertMS(arrive - Date.now())})
+
+}
+  render() {
+
 
     return (
-      <div>
-        <h1> G'day! Landing home in {convertMS(arrive - Date.now())} </h1>
-        </div>
-    )
+       <div>
+         <h1> G'day! Landing home in {this.state.count} </h1>
+       </div>
+      )
   }
 }
 
