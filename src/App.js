@@ -10,9 +10,7 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <WelcomeTest />
-        <Children abc = "test" />
-        <Child abc = "test" />
+        
         <Countdown />
       </div>
     );
