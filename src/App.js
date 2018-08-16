@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     console.log('props on Parent: ', this.props);
     return (
-      <div className={`${styles.App}`}>
+      <div>
         DUDE
         <br />
         <br />
