@@ -163,6 +163,10 @@ function createWebpackConfig() {
             },
           ],
         },
+        {
+          test: /\.(jpg|png|eot|svg|ttf|woff|woff2)?(\?[a-z0-9#=&.]+)?$/,
+          use: 'file-loader',
+        },
       ],
     },
   };
