@@ -5,14 +5,14 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      count: ''
-    }
+      count: '',
+    };
 
     setInterval(this.tidyTime, 20);
   }
 
   // from https://gist.github.com/remino/1563878
-  convertMS(ms) {
+  convertMS = (ms) => {
     var d, h, m, s;
     s = Math.floor(ms / 1000);
     m = Math.floor(s / 60);
@@ -29,9 +29,9 @@ class App extends React.Component {
   }
 
   tidyTime = () => {
-    const arrive = new Date('September 12, 2018 06:05:00 GMT +10')
+    const arrive = new Date('September 12, 2018 06:05:00 GMT +10');
 
-    this.setState({ count: this.convertMS(arrive - Date.now()) })
+    this.setState({ count: this.convertMS(arrive - Date.now()) });
   }
 
   render() {
@@ -41,9 +41,11 @@ class App extends React.Component {
       return <div>Loading</div>;
     }
 
-    return <div>
-      <h1> G'day! Landing home in {this.state.count} </h1>
-    </div>;
+    return (
+      <div>
+        <h1>G'day! Landing home in {this.state.count}</h1>
+      </div>
+    );
   }
 }
 
