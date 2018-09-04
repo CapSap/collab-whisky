@@ -1,38 +1,17 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import styles from './App.css';
+import PropTypes from 'prop-types';
 
-class App extends Component {
-  render() {
-    console.log('props on Parent: ', this.props);
-    return (
-      <div className={`${styles.App}`}>
-        DUDE
-        <br />
-        <br />
-        <br />
-        <Child abc="test" />
-      </div>
-    );
+const App = (props) => {
+  const { isLoading } = props;
+
+  if (isLoading) {
+    return <div>Loading</div>;
   }
-}
 
-// class Child extends Component {
-//   render() {
-//     console.log('props on Child: ', this.props);
-//     const abc = this.props.abc;
-//     console.log('abc = ', abc);
-//     return (
-//       <div>This is my APP</div>
-//     )
-//   }
-// }
+  return <div>React here</div>;
+};
 
-const Child = (props) => {
-  console.log('props: ', props);
-  return (
-    <div>This is my APP TOO </div>
-  );
+App.propTypes = {
+  isLoading: PropTypes.bool,
 };
 
 export default App;

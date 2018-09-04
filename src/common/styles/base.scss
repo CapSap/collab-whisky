@@ -1,0 +1,139 @@
+@import '~styles/variables';
+
+html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 95%;
+  line-height: 1.5em;
+  color: rgb(72,72,72);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: 0;
+}
+
+div {
+  display: flex;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1em 0;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+a, a:hover, a:visited, a:active, a:focus {
+  color: #0071c1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+hr {
+  border-style: solid;
+  border-color: #0071c1;
+}
+
+label {
+  font-size: 0.85rem;
+}
+
+input, input[type="number"] {
+  background-color: white;
+  border: 1px solid #dadada;
+  padding: .5em .75em;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  width: 100%;
+}
+input[type="radio"], input[type="checkbox"] {
+  width: auto;
+}
+input[type="button"], input[type="submit"], input[type="reset"] {
+  border-radius: 4px;
+  border: 0;
+  background-color: #0071c1;
+  padding: .65em .85em;
+  font-size: 0.75rem;
+  color: white;
+  font-weight: 300;
+  cursor: pointer;
+}
+input[type="button"]:hover, input[type="button"]:focus, input[type="button"]:active, input[type="button"]:visited, input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active, input[type="submit"]:visited, input[type="reset"]:hover, input[type="reset"]:focus, input[type="reset"]:active, input[type="reset"]:visited {
+  background-color: #00355a;
+}
+input:disabled {
+  background-color: pink;
+  cursor: default;
+}
+
+fieldset {
+  padding: 2em;
+  border: 1px solid #0071c1;
+  border-radius: .5rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #0071c1;
+}
+fieldset ul {
+  list-style: none;
+}
+
+label {
+  color: black;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+input, textarea, select {
+  background-color: white;
+  border: 1px solid #dadada;
+  padding: .5em .75em;
+  border-radius: 2px;
+  color: black;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+textarea {
+  width: 100%;
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+  font-size: .8rem;
+}
+
+table tr td input, table tr th input {
+  width: 100%;
+  max-width: 60px;
+  margin: 0.35rem 0;
+  text-align: center;
+  padding: 0 0.25rem;
+}
+
+table tr th input {
+  font-size: 100%;
+  padding: 0.25rem;
+}
+
+/* Reset HTML5 Search Input in Webkit */
+input[type=search] {
+-webkit-appearance:searchfield;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+-webkit-appearance:searchfield-cancel-button;
+}

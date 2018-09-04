@@ -1,0 +1,45 @@
+.flex {
+  display: flex
+}
+
+.flexColumn {
+  flex-direction: column;
+}
+
+.flexAuto {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+.flexWrap {
+  flex-wrap: wrap;
+}
+
+.itemsStart {
+  align-items: flex-start;
+}
+
+.itemsCenter {
+  align-items: center;
+}
+
+.itemsEnd {
+  align-items: flex-end;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
