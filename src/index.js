@@ -1,8 +1,20 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import store from './storeConfig';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import 'antd/dist/antd.css';
+import 'styles/base';
+
+const Main = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+);
+
+export default Main;
+
+ReactDOM.render(<Main />, document.getElementById('root'));

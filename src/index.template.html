@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <% if (htmlWebpackPlugin.options.title) { %>
+    <meta name="description" content="<%= htmlWebpackPlugin.options.title %>"></meta>
+    <% } %>
+
+    <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon %>">
+    <% } %>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <%
+      for (var chunk in htmlWebpackPlugin.files.chunks) {
+        var keys = Object.keys(htmlWebpackPlugin.files.chunks[chunk].css);
+
+        for (var key in keys) {
+    %>
+    <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.files.chunks[chunk].css[key] %>"></link>
+    <%
+        }
+      }
+    %>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>" type="text/javascript"></script>
+    <% } %>
+  </body>
+</html>
