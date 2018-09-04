@@ -1,0 +1,14 @@
+@import '~styles/variables';
+
+.base {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $black;
+  color: $white;
+  padding: 1rem;
+}
+
+.logo {
+  width: 5rem;
+}
