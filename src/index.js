@@ -7,14 +7,17 @@ import App from './App';
 import 'antd/dist/antd.css';
 import 'styles/base';
 
-const Main = () => (
-  <Provider store={store}>
+const renderApp = props => ReactDOM.render(
+  <Provider store={store} {...props}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>
+  </Provider>,
+  document.getElementById('root'),
 );
 
-export default Main;
+if (module.hot) {
+  module.hot.accept(App, renderApp);
+}
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+renderApp();
