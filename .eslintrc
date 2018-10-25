@@ -8,10 +8,11 @@
   },
   "parser": "babel-eslint",
   "rules": {
-    "no-underscore-dangle": [2, { "allowAfterThis": false, "allow": ["_id", "_links", "_embedded"] }],
+    "no-underscore-dangle": [2, { "allowAfterThis": false, "allow": ["_id"] }],
     "class-methods-use-this": 0,
     "react/react-in-jsx-scope": 0,
-    "react/jsx-filename-extension": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-one-expression-per-line": 0,
     "react/no-multi-comp": 0,
     "react/prefer-stateless-function": 0,
