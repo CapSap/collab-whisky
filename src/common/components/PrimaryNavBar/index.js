@@ -1,5 +1,5 @@
 import logo from 'assets/logo.png';
-import { Select, Icon, Button } from 'antd';
+import { Select, Button } from 'antd';
 
 import styles from './styles';
 
