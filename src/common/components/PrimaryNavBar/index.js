@@ -1,5 +1,5 @@
 import logo from 'assets/logo.png';
-import { Select, Button } from 'antd';
+import { Input, Select, Button } from 'antd';
 import isEmpty from 'lodash/isEmpty';
 
 import styles from './styles';
@@ -25,9 +25,7 @@ class PrimaryNavBar extends React.Component {
   handleInputChange = newState => this.setState(newState);
 
   handleKeyPress = event => {
-    const { searchQuery } = this.state;
-
-    if (event.key === 'Enter' || (event.keyCode === 13 && !isEmpty(searchQuery))) {
+    if (event.key === 'Enter' || event.keyCode === 13) {
       this.submit();
     }
   };
@@ -36,6 +34,8 @@ class PrimaryNavBar extends React.Component {
     const { searchQuery, selectedCategory } = this.state;
 
     console.log(`query TMDB, searching for "${searchQuery}" under "${selectedCategory}"`);
+    if (isEmpty(searchQuery)) {
+    }
   };
 
   render() {
@@ -46,7 +46,7 @@ class PrimaryNavBar extends React.Component {
         <img src={logo} className={styles.logo} alt="IMDB" />
 
         <div className={styles.content}>
-          <input
+          <Input
             placeholder="Find Movies, TV Shows, Celebrities and more..."
             value={searchQuery}
             onChange={event => this.handleInputChange({ searchQuery: event.target.value })}
@@ -66,7 +66,12 @@ class PrimaryNavBar extends React.Component {
           </Select>
 
           <Button
-            style={{ backgroundColor: '#F5C518', fontWeight: 'bold', color: '#000' }}
+            style={{
+              backgroundColor: '#F5C518',
+              fontWeight: 'bold',
+              color: '#000',
+              border: 'none'
+            }}
             icon="search"
             onClick={this.submit}
           />
