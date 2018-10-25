@@ -1,13 +1,15 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "env": {
     "browser": true,
     "node": true,
     "mocha": true,
     "jest": true
   },
+  "plugins": ["prettier"],
   "parser": "babel-eslint",
   "rules": {
+    "prettier/prettier": ["error"],
     "no-underscore-dangle": [2, { "allowAfterThis": false, "allow": ["_id"] }],
     "class-methods-use-this": 0,
     "react/react-in-jsx-scope": 0,

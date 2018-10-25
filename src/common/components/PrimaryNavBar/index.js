@@ -9,17 +9,17 @@ const menuCategories = [
   'TV Episodes',
   'Names',
   'Companies',
-  'Advanced Search >>',
+  'Advanced Search >>'
 ].map(_ => ({
   name: _,
-  value: _.toLowerCase(),
+  value: _.toLowerCase()
 }));
 
 class PrimaryNavBar extends React.Component {
   state = {
     selectedCategory: menuCategories[0].value,
-    searchQuery: '',
-  }
+    searchQuery: ''
+  };
 
   handleSearch = event => this.setState({ searchQuery: event.target.value });
 
@@ -47,12 +47,13 @@ class PrimaryNavBar extends React.Component {
             ))}
           </Select>
 
-          <Button style={{ backgroundColor: '#F5C518', fontWeight: 'bold', color: '#000' }} icon="search" />
+          <Button
+            style={{ backgroundColor: '#F5C518', fontWeight: 'bold', color: '#000' }}
+            icon="search"
+          />
         </div>
 
-        <div>
-          menu items
-        </div>
+        <div>menu items</div>
       </div>
     );
   }
