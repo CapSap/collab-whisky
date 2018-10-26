@@ -44,7 +44,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <h1>G'day! Landing home in {this.state.count}</h1>
-        <h2> testing </h2>
+        <h2>test</h2>
       </div>
     );
   }
