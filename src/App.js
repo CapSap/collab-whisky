@@ -15,6 +15,7 @@ const App = (props) => {
   return (
     <Page.Wrapper>
       <PrimaryNavBar />
+
       <Switch>
         <Route path="/" component={HomePage} />
       </Switch>
