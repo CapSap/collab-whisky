@@ -5,5 +5,21 @@
 .wrapper {
   display: flex;
   flex: 1;
+  height: 100%;
   flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  padding: 1em;
+
+  .center {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
 }
