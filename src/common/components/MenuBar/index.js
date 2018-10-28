@@ -5,18 +5,29 @@ import isEmpty from 'lodash/isEmpty';
 import styles from './styles';
 
 const menuCategories = [
-  'All',
-  'Title',
-  'TV Episodes',
-  'Names',
-  'Companies',
-  'Advanced Search >>'
-].map(_ => ({
-  name: _,
-  value: _.toLowerCase()
-}));
+  {
+    name: 'All',
+    value: 'multi'
+  },
+  {
+    name: 'Title',
+    value: 'movie'
+  },
+  {
+    name: 'TV Episodes',
+    value: 'tv'
+  },
+  {
+    name: 'Companies',
+    value: 'company'
+  },
+  {
+    name: 'Advanced Search >>',
+    value: 'more'
+  }
+];
 
-class PrimaryNavBar extends React.Component {
+class MenuBar extends React.Component {
   state = {
     selectedCategory: menuCategories[0].value,
     searchQuery: ''
@@ -83,4 +94,4 @@ class PrimaryNavBar extends React.Component {
   }
 }
 
-export default PrimaryNavBar;
+export default MenuBar;
