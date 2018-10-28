@@ -12,8 +12,8 @@ const App = () => (
     <MenuBar />
 
     <Switch>
-      <Route path="/" component={HomePage} />
       <Route path="/results" component={ResultsPage} />
+      <Route exact path="/" component={HomePage} />
 
       <Route component={NotFoundPage} />
     </Switch>
