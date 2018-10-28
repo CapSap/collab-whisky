@@ -2,7 +2,7 @@ import conf from 'conf';
 import axios from 'axios';
 
 const featureName = 'menu-bar';
-const actionTypes = {
+export const actionTypes = {
   fetchMoviesViaQuery: `${featureName}/FETCH_MOVIES_VIA_QUERY`
 };
 
