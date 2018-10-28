@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Page from 'components/Page';
 import MenuBar from 'components/MenuBar';
 import { Switch, Route } from 'react-router-dom';
+import 'antd/dist/antd.css';
 
 import HomePage from 'home';
 

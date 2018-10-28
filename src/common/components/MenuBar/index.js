@@ -23,10 +23,6 @@ const menuCategories = [
   {
     name: 'Companies',
     value: 'company'
-  },
-  {
-    name: 'Advanced Search >>',
-    value: 'more'
   }
 ];
 
@@ -63,7 +59,6 @@ class MenuBar extends React.Component {
   render() {
     const { selectedCategory, searchQuery } = this.state;
     const { isLoading } = this.props;
-    console.log('this.props: ', this.props);
 
     return (
       <div className={styles.base}>
@@ -71,6 +66,7 @@ class MenuBar extends React.Component {
 
         <div className={styles.content}>
           <Input
+            style={{ textTransform: 'none' }}
             placeholder="Find Movies, TV Shows, Celebrities and more..."
             value={searchQuery}
             onChange={event => this.handleInputChange({ searchQuery: event.target.value })}
