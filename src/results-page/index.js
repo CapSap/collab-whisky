@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Page from 'components/Page';
-import NotFound from 'components/NotFound';
 import isEmpty from 'lodash/isEmpty';
 import conf from 'conf';
+import List from 'components/List';
+import { Title, Heading, SubHeading } from 'components/typography';
+import commonStyles from 'commonStyles';
 
 class ResultsPage extends React.Component {
   static propTypes = {
@@ -31,34 +33,39 @@ class ResultsPage extends React.Component {
   render() {
     const { isLoading, hasError, payload } = this.props;
 
-    if (isLoading) {
-      return <div>loading</div>;
-    }
-
-    if (hasError || (payload && isEmpty(payload.data))) {
-      return <NotFound error={hasError} />;
-    }
-
     if (isEmpty(payload)) {
       return null;
     }
 
     return (
-      <Page.Content center>
-        {payload.data.results.map(movie => (
-          <div key={movie.id} style={{ border: '1px solid red' }}>
-            <h1>{movie.title}</h1>
-            <h2>{movie.vote_average}</h2>
-            <img src={`${conf.IMAGE_API}/w500${movie.poster_path}`} alt={movie.title} />
-            <p>{movie.release_date}</p>
-            <p>{movie.overview}</p>
-          </div>
-        ))}
+      <Page.Content column>
+        <Title>Search Results</Title>
+
+        <List isLoading={isLoading} hasError={hasError}>
+          {payload.data.results.map(item => (
+            <List.Item key={item.id}>
+              <img src={`${conf.IMAGE_URL}/w500${item.poster_path}`} alt={item.title} />
+
+              <div
+                className={classNames(
+                  commonStyles.flex,
+                  commonStyles.flexAuto,
+                  commonStyles.flexColumn
+                )}
+              >
+                <Heading>{item.title}</Heading>
+                <SubHeading>{item.vote_average}</SubHeading>
+                <p>{item.release_date}</p>
+                <p>{item.overview}</p>
+              </div>
+            </List.Item>
+          ))}
+        </List>
       </Page.Content>
     );
   }
 }
 
-const mapState = ({ menu }) => ({ ...menu });
+const mapState = ({ menu }) => menu;
 
 export default withRouter(connect(mapState)(ResultsPage));
