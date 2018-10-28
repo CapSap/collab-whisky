@@ -5,34 +5,34 @@ class HomePage extends React.Component {
     super(props);
 
     this.state = {
-      count: '',
+      count: ''
     };
 
-    setInterval(this.tidyTime, 20);
+    // setInterval(this.tidyTime, 20);
   }
 
   // from https://gist.github.com/remino/1563878
-  convertMS = (ms) => {
-    var d, h, m, s;
-    s = Math.floor(ms / 1000);
-    m = Math.floor(s / 60);
-    s = s % 60;
-    h = Math.floor(m / 60);
-    m = m % 60;
-    d = Math.floor(h / 24);
-    h = h % 24;
-    ms = ms % 1000;
+  // convertMS = (ms) => {
+  //   var d, h, m, s;
+  //   s = Math.floor(ms / 1000);
+  //   m = Math.floor(s / 60);
+  //   s = s % 60;
+  //   h = Math.floor(m / 60);
+  //   m = m % 60;
+  //   d = Math.floor(h / 24);
+  //   h = h % 24;
+  //   ms = ms % 1000;
 
-    return (
-      d + " Days, " + m + " Minutes, " + s + " Seconds, " + ms + " Fast seconds"
-    );
-  }
+  //   return (
+  //     d + " Days, " + m + " Minutes, " + s + " Seconds, " + ms + " Fast seconds"
+  //   );
+  // }
 
-  tidyTime = () => {
-    const arrive = new Date('September 12, 2018 06:05:00 GMT +10');
+  // tidyTime = () => {
+  //   const arrive = new Date('September 12, 2018 06:05:00 GMT +10');
 
-    this.setState({ count: this.convertMS(arrive - Date.now()) });
-  }
+  //   this.setState({ count: this.convertMS(arrive - Date.now()) });
+  // }
 
   render() {
     const { isLoading } = this.props;
@@ -43,14 +43,17 @@ class HomePage extends React.Component {
 
     return (
       <div>
-        <h1>G'day! Landing home in {this.state.count}</h1>
+        <h1>
+          G'day! Landing home in
+          {this.state.count}
+        </h1>
       </div>
     );
   }
 }
 
 HomePage.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool
 };
 
 export default HomePage;
