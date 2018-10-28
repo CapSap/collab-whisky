@@ -16,8 +16,13 @@
   align-content: flex-start;
   align-items: flex-start;
   padding: 1em;
+  flex-direction: row;
 
-  .center {
+  &.column {
+    flex-direction: column;
+  }
+
+  &.center {
     justify-content: center;
     align-content: center;
     align-items: center;
