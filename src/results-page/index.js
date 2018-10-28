@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Page from 'components/Page';
+import NotFound from 'components/NotFound';
 import isEmpty from 'lodash/isEmpty';
 
 const ResultsPage = ({ isLoading, hasError, payload }) => {
@@ -7,14 +8,16 @@ const ResultsPage = ({ isLoading, hasError, payload }) => {
     return <div>loading</div>;
   }
 
-  if (hasError || isEmpty(payload)) {
-    return <div>Error occurred</div>;
+  if (hasError || (payload && isEmpty(payload.data))) {
+    return <NotFound error={hasError} />;
   }
 
   console.log('payload: ', payload);
+  const data = payload.data.results;
+  console.log('data: ', data);
 
   return (
-    <Page.Content>
+    <Page.Content center>
       <div>Hello</div>
       <span>world</span>
     </Page.Content>
