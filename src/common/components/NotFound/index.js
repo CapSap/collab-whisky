@@ -2,15 +2,15 @@ import Page from 'components/Page';
 import { withRouter } from 'react-router-dom';
 import Button from 'antd/lib/button';
 
-const NotFoundPage = ({ errors, history }) => {
+const NotFoundPage = ({ error, history }) => {
   let message = 'An unexpected error occurred, please return to Home Page to continue.';
 
-  if (errors.constructor === String) {
-    message = errors;
+  if (error.constructor === String) {
+    message = error;
   }
 
   return (
-    <Page.Content>
+    <Page.Content center>
       {message}
       <br />
       <Button onClick={() => history.push('/')}>Return Home</Button>
@@ -18,13 +18,13 @@ const NotFoundPage = ({ errors, history }) => {
   );
 };
 NotFoundPage.propTypes = {
-  errors: PropTypes.shape({}),
+  error: PropTypes.shape({}),
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired
 };
 NotFoundPage.defaultProps = {
-  errors: ''
+  error: ''
 };
 
 export default withRouter(NotFoundPage);
