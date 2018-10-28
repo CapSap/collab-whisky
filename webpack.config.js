@@ -164,6 +164,10 @@ function createWebpackConfig() {
           use: 'file-loader'
         }
       ]
+    },
+
+    devServer: {
+      historyApiFallback: true
     }
   };
 }
