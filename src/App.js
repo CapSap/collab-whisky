@@ -1,31 +1,23 @@
-import PropTypes from 'prop-types';
 import Page from 'components/Page';
 import MenuBar from 'components/MenuBar';
+import NotFoundPage from 'components/NotFound';
 import { Switch, Route } from 'react-router-dom';
 import 'antd/dist/antd.css';
 
 import HomePage from 'home';
+import ResultsPage from 'results-page';
 
-const App = props => {
-  const { isLoading } = props;
+const App = () => (
+  <Page.Wrapper>
+    <MenuBar />
 
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
+    <Switch>
+      <Route path="/" component={HomePage} />
+      <Route path="/results" component={ResultsPage} />
 
-  return (
-    <Page.Wrapper>
-      <MenuBar />
-
-      <Switch>
-        <Route path="/" component={HomePage} />
-      </Switch>
-    </Page.Wrapper>
-  );
-};
-
-App.propTypes = {
-  isLoading: PropTypes.bool
-};
+      <Route component={NotFoundPage} />
+    </Switch>
+  </Page.Wrapper>
+);
 
 export default App;
