@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default () => {};
+import menuReducer from 'components/MenuBar/reducers';
+
+export default combineReducers({
+  menu: menuReducer
+});
