@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import Page from 'components/Page';
 import NotFound from 'components/NotFound';
 import isEmpty from 'lodash/isEmpty';
+import conf from 'conf';
 
 class ResultsPage extends React.Component {
   static propTypes = {
@@ -42,14 +43,17 @@ class ResultsPage extends React.Component {
       return null;
     }
 
-    console.log('payload: ', payload);
-    const data = payload.data.results;
-    console.log('data: ', data);
-
     return (
       <Page.Content center>
-        <div>Hello</div>
-        <span>world</span>
+        {payload.data.results.map(movie => (
+          <div key={movie.id} style={{ border: '1px solid red' }}>
+            <h1>{movie.title}</h1>
+            <h2>{movie.vote_average}</h2>
+            <img src={`${conf.IMAGE_API}/w500${movie.poster_path}`} alt={movie.title} />
+            <p>{movie.release_date}</p>
+            <p>{movie.overview}</p>
+          </div>
+        ))}
       </Page.Content>
     );
   }
