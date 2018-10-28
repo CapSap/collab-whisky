@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import Page from 'components/Page';
-import PrimaryNavBar from 'components/PrimaryNavBar';
+import MenuBar from 'components/MenuBar';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'home';
 
-const App = (props) => {
+const App = props => {
   const { isLoading } = props;
 
   if (isLoading) {
@@ -14,7 +14,7 @@ const App = (props) => {
 
   return (
     <Page.Wrapper>
-      <PrimaryNavBar />
+      <MenuBar />
 
       <Switch>
         <Route path="/" component={HomePage} />
@@ -24,7 +24,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool
 };
 
 export default App;

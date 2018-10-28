@@ -1,22 +1,41 @@
 import logo from 'assets/logo.png';
-import { Input, Select, Button } from 'antd';
+import { Input, Select, Button, Icon } from 'antd';
 import isEmpty from 'lodash/isEmpty';
+import Spinner from 'components/Spinner';
+import { connect } from 'react-redux';
 
+import { fetchMoviesViaQuery } from './actions';
 import styles from './styles';
 
 const menuCategories = [
-  'All',
-  'Title',
-  'TV Episodes',
-  'Names',
-  'Companies',
-  'Advanced Search >>'
-].map(_ => ({
-  name: _,
-  value: _.toLowerCase()
-}));
+  {
+    name: 'All',
+    value: 'multi'
+  },
+  {
+    name: 'Title',
+    value: 'movie'
+  },
+  {
+    name: 'TV Episodes',
+    value: 'tv'
+  },
+  {
+    name: 'Companies',
+    value: 'company'
+  },
+  {
+    name: 'Advanced Search >>',
+    value: 'more'
+  }
+];
 
-class PrimaryNavBar extends React.Component {
+class MenuBar extends React.Component {
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    fetchMovies: PropTypes.func.isRequired
+  };
+
   state = {
     selectedCategory: menuCategories[0].value,
     searchQuery: ''
@@ -32,14 +51,19 @@ class PrimaryNavBar extends React.Component {
 
   submit = () => {
     const { searchQuery, selectedCategory } = this.state;
+    const { isLoading, fetchMovies } = this.props;
 
-    console.log(`query TMDB, searching for "${searchQuery}" under "${selectedCategory}"`);
-    if (isEmpty(searchQuery)) {
+    if (isEmpty(searchQuery) || isLoading) {
+      return;
     }
+
+    fetchMovies(searchQuery, selectedCategory);
   };
 
   render() {
     const { selectedCategory, searchQuery } = this.state;
+    const { isLoading } = this.props;
+    console.log('this.props: ', this.props);
 
     return (
       <div className={styles.base}>
@@ -56,7 +80,7 @@ class PrimaryNavBar extends React.Component {
           <Select
             defaultValue={selectedCategory}
             style={{ height: '100%', width: '150px' }}
-            onChange={value => this.handleDropdownSelect({ selectedCategory: value })}
+            onChange={value => this.handleInputChange({ selectedCategory: value })}
           >
             {menuCategories.map((menuItem, index) => (
               <Select.Option value={menuItem.value} key={`${menuItem.value}-${index}`}>
@@ -72,9 +96,11 @@ class PrimaryNavBar extends React.Component {
               color: '#000',
               border: 'none'
             }}
-            icon="search"
+            disabled={isLoading}
             onClick={this.submit}
-          />
+          >
+            {isLoading ? <Spinner /> : <Icon type="search" />}
+          </Button>
         </div>
 
         <div>menu items</div>
@@ -83,4 +109,11 @@ class PrimaryNavBar extends React.Component {
   }
 }
 
-export default PrimaryNavBar;
+const mapState = ({ menu }) => ({ ...menu });
+
+const mapDispatch = { fetchMovies: fetchMoviesViaQuery };
+
+export default connect(
+  mapState,
+  mapDispatch
+)(MenuBar);

@@ -16,7 +16,8 @@
     "react/no-multi-comp": 0,
     "import/no-unresolved": 0,
     "max-len": [2, 100, 2],
-    "import/extensions": 0
+    "import/extensions": 0,
+    "import/prefer-default-export": 0
   },
   "globals": {
     "React": true,
