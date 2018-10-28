@@ -1,4 +1,35 @@
-.list {
+.base {
   list-style: none;
   padding-left: 0;
+}
+
+.item {
+  padding: 1em;
+  background-color: #fbfbfb;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+
+  > img {
+    width: 6em;
+    max-width: 6em;
+  }
+
+  > div {
+    // main content
+
+    display: flex;
+    flex: 1;
+    padding: 0 1em;
+    flex-direction: column;
+  }
+
+  &:nth-of-type(2n) {
+    background-color: #f6f6f5;
+  }
+
+  &:hover {
+    background-color: #dfe8f1;
+  }
 }

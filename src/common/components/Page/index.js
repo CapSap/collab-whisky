@@ -8,9 +8,14 @@ const Wrapper = ({ className, ...restProps }) => (
   <div className={classNames(styles.wrapper, className)} {...restProps} />
 );
 
-const Content = ({ className, center, ...restProps }) => (
+const Content = ({ className, center, column, ...restProps }) => (
   <div
-    className={classNames(styles.content, { [styles.center]: Boolean(center) }, className)}
+    className={classNames(
+      styles.content,
+      { [styles.column]: Boolean(column) },
+      { [styles.center]: Boolean(center) },
+      className
+    )}
     {...restProps}
   />
 );

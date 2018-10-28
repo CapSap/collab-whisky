@@ -3,7 +3,7 @@ import NotFound from 'components/NotFound';
 
 import styles from './styles';
 
-const List = ({ className, isLoading, hasError, children, emptyMessage, restProps }) => {
+const List = ({ className, isLoading, hasError, children, emptyMessage, ...restProps }) => {
   if (isLoading) {
     return <Spin size="large" tip="Loading..." />;
   }
@@ -22,19 +22,32 @@ const List = ({ className, isLoading, hasError, children, emptyMessage, restProp
 };
 List.propTypes = {
   className: PropTypes.string,
-  isLoading: PropTypes.bool.isLoading,
+  isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
   children: PropTypes.node,
   emptyMessage: PropTypes.string
 };
 List.defaultProps = {
   className: '',
-  isLoading: false,
   hasError: null,
   children: null,
   emptyMessage: 'No Data'
 };
 
-const ListItem = (List.Item = ListItem);
+const ListItem = ({ className, children, ...restProps }) => (
+  <li className={classNames(styles.item, className)} {...restProps}>
+    {children}
+  </li>
+);
+ListItem.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node
+};
+ListItem.defaultProps = {
+  className: '',
+  children: null
+};
+
+List.Item = ListItem;
 
 export default List;
