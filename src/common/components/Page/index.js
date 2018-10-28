@@ -2,21 +2,13 @@ import commonStyles from 'commonStyles';
 
 import styles from './styles';
 
-const Page = ({
-  className,
-  ...restProps
-}) => <div className={classNames(className, styles.base)} {...restProps} />;
+const Page = ({ className, ...restProps }) => (
+  <div className={classNames(className, styles.base)} {...restProps} />
+);
 
-const Wrapper = ({
-  className,
-  ...restProps
-}) => (
+const Wrapper = ({ className, ...restProps }) => (
   <div
-    className={classNames(
-      commonStyles.flex,
-      commonStyles.flexColumn,
-      className,
-    )}
+    className={classNames(commonStyles.flex, commonStyles.flexColumn, className)}
     {...restProps}
   />
 );
