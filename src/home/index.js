@@ -27,8 +27,9 @@ class HomePage extends React.Component {
     }
 
     return (
-      <Page.Content>
+      <Page.Content column>
         <h1>Latest Movies</h1>
+        <p>(list movies here)</p>
       </Page.Content>
     );
   }
