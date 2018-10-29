@@ -2,11 +2,12 @@ import Page from 'components/Page';
 
 class HomePage extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool,
     hasError: PropTypes.shape({})
   };
 
   static defaultProps = {
+    isLoading: false,
     hasError: null
   };
 
