@@ -1,59 +1,38 @@
-import PropTypes from 'prop-types';
+import Page from 'components/Page';
 
 class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    hasError: PropTypes.shape({})
+  };
 
-    this.state = {
-      count: ''
-    };
+  static defaultProps = {
+    hasError: null
+  };
 
-    // setInterval(this.tidyTime, 20);
+  componentDidMount() {
+    // check for asynchronous payload data
+    // if it does not exist, dispatch redux action to fetch latest movies
   }
 
-  // from https://gist.github.com/remino/1563878
-  // convertMS = (ms) => {
-  //   var d, h, m, s;
-  //   s = Math.floor(ms / 1000);
-  //   m = Math.floor(s / 60);
-  //   s = s % 60;
-  //   h = Math.floor(m / 60);
-  //   m = m % 60;
-  //   d = Math.floor(h / 24);
-  //   h = h % 24;
-  //   ms = ms % 1000;
-
-  //   return (
-  //     d + " Days, " + m + " Minutes, " + s + " Seconds, " + ms + " Fast seconds"
-  //   );
-  // }
-
-  // tidyTime = () => {
-  //   const arrive = new Date('September 12, 2018 06:05:00 GMT +10');
-
-  //   this.setState({ count: this.convertMS(arrive - Date.now()) });
-  // }
-
   render() {
-    const { isLoading } = this.props;
+    const { isLoading, hasError } = this.props;
 
     if (isLoading) {
       return <div>Loading</div>;
     }
 
+    if (hasError) {
+      // handle hasError scenario here
+    }
+
     return (
-      <div>
-        <h1>
-          G'day! Landing home in
-          {this.state.count}
-        </h1>
-      </div>
+      <Page.Content>
+        <h1>Latest Movies</h1>
+      </Page.Content>
     );
   }
 }
 
-HomePage.propTypes = {
-  isLoading: PropTypes.bool
-};
-
+// connect to redux state & actions here
 export default HomePage;
