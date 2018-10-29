@@ -1,5 +1,3 @@
-import commonStyles from 'commonStyles';
-
 import styles from './styles';
 
 const Page = ({ className, ...restProps }) => (
@@ -7,12 +5,22 @@ const Page = ({ className, ...restProps }) => (
 );
 
 const Wrapper = ({ className, ...restProps }) => (
+  <div className={classNames(styles.wrapper, className)} {...restProps} />
+);
+
+const Content = ({ className, center, column, ...restProps }) => (
   <div
-    className={classNames(commonStyles.flex, commonStyles.flexColumn, className)}
+    className={classNames(
+      styles.content,
+      { [styles.column]: Boolean(column) },
+      { [styles.center]: Boolean(center) },
+      className
+    )}
     {...restProps}
   />
 );
 
 Page.Wrapper = Wrapper;
+Page.Content = Content;
 
 export default Page;

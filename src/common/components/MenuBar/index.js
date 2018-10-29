@@ -3,6 +3,7 @@ import { Input, Select, Button, Icon } from 'antd';
 import isEmpty from 'lodash/isEmpty';
 import Spinner from 'components/Spinner';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { fetchMoviesViaQuery } from './actions';
 import styles from './styles';
@@ -29,7 +30,10 @@ const menuCategories = [
 class MenuBar extends React.Component {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    fetchMovies: PropTypes.func.isRequired
+    fetchMovies: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
+    }).isRequired
   };
 
   state = {
@@ -47,13 +51,14 @@ class MenuBar extends React.Component {
 
   submit = () => {
     const { searchQuery, selectedCategory } = this.state;
-    const { isLoading, fetchMovies } = this.props;
+    const { isLoading, fetchMovies, history } = this.props;
 
     if (isEmpty(searchQuery) || isLoading) {
       return;
     }
 
     fetchMovies(searchQuery, selectedCategory);
+    history.push('/results');
   };
 
   render() {
@@ -109,7 +114,9 @@ const mapState = ({ menu }) => ({ ...menu });
 
 const mapDispatch = { fetchMovies: fetchMoviesViaQuery };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(MenuBar);
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch
+  )(MenuBar)
+);
