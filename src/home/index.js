@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Page from 'components/Page';
 import isEmpty from 'lodash/isEmpty';
+import { Title, Heading, SubHeading } from 'components/typography';
+import List from 'components/List';
+import commonStyles from 'commonStyles';
 import { fetchLatestMovies } from './actions';
 
 class HomePage extends React.Component {
@@ -9,6 +12,7 @@ class HomePage extends React.Component {
     isLoading: PropTypes.bool,
     hasError: PropTypes.shape({}),
     payload: PropTypes.shape({}),
+    fetchMovies: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -30,7 +34,7 @@ class HomePage extends React.Component {
 
   render() {
     const { isLoading, hasError, payload } = this.props;
-    console.log(payload.data);
+    console.log({payload});
 
     if (isLoading) {
       return <div>Loading</div>;
@@ -43,29 +47,8 @@ class HomePage extends React.Component {
 
     return (
       <Page.Content column>
-        <h1>Latest Movies</h1>
-        <p>(list movies here)
-        <List isLoading={isLoading} hasError={hasError}>
-          {payload.data.map(item => (
-            <List.Item key={item.id}>
-              <img src={`${conf.IMAGE_URL}/w500${item.poster_path}`} alt={item.title} />
-
-              <div
-                className={classNames(
-                  commonStyles.flex,
-                  commonStyles.flexAuto,
-                  commonStyles.flexColumn
-                )}
-              >
-                <Heading>{item.title}</Heading>
-                <SubHeading>{item.vote_average}</SubHeading>
-                <p>{item.release_date}</p>
-                <p>{item.overview}</p>
-              </div>
-            </List.Item>
-          ))}
-        </List>
-        </p>
+        <Title>Latest Movies</Title>
+                
       </Page.Content>
     );
   }

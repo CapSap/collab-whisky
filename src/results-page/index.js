@@ -24,6 +24,7 @@ class ResultsPage extends React.Component {
 
   componentDidMount() {
     const { isLoading, payload, history } = this.props;
+    console.log(payload);
 
     if (!isLoading && isEmpty(payload)) {
       history.push('/');
