@@ -9,7 +9,7 @@ import { fetchLatestMovies } from './actions';
 
 class HomePage extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool,
+    isLoading: PropTypes.bool.isRequired,
     hasError: PropTypes.shape({}),
     payload: PropTypes.shape({}),
     fetchMovies: PropTypes.func.isRequired
@@ -21,20 +21,20 @@ class HomePage extends React.Component {
     payload: null
   };
 
+  // check for asynchronous payload data
+  // if it does not exist, dispatch redux action to fetch latest movies
   componentDidMount() {
-    const { payload, fetchMovies } = this.props;
+    const { isLoading, payload, fetchMovies } = this.props;
 
-    if (isEmpty(payload)) {
+    if (!isLoading && isEmpty(payload)) {
       fetchMovies();
     }
-
-    // check for asynchronous payload data
-    // if it does not exist, dispatch redux action to fetch latest movies
   }
 
   render() {
     const { isLoading, hasError, payload } = this.props;
-    console.log({payload});
+    console.log(payload);
+    console.log(isLoading)
 
     if (isLoading) {
       return <div>Loading</div>;
@@ -48,7 +48,8 @@ class HomePage extends React.Component {
     return (
       <Page.Content column>
         <Title>Latest Movies</Title>
-                
+      
+
       </Page.Content>
     );
   }
