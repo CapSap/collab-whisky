@@ -16,7 +16,6 @@ class HomePage extends React.Component {
   };
 
   static defaultProps = {
-    isLoading: false,
     hasError: null,
     payload: null
   };
@@ -24,9 +23,9 @@ class HomePage extends React.Component {
   // check for asynchronous payload data
   // if it does not exist, dispatch redux action to fetch latest movies
   componentDidMount() {
-    const { isLoading, payload, fetchMovies } = this.props;
+    const { payload, fetchMovies } = this.props;
 
-    if (!isLoading && isEmpty(payload)) {
+    if (isEmpty(payload)) {
       fetchMovies();
     }
   }
@@ -34,7 +33,7 @@ class HomePage extends React.Component {
   render() {
     const { isLoading, hasError, payload } = this.props;
     console.log(payload);
-    console.log(isLoading)
+    console.log(isLoading);
 
     if (isLoading) {
       return <div>Loading</div>;
@@ -42,14 +41,16 @@ class HomePage extends React.Component {
 
     if (hasError) {
       // handle hasError scenario here
-      console.log('error');
+      console.log(hasError);
+      return <div>Error!</div>;
     }
 
     return (
       <Page.Content column>
         <Title>Latest Movies</Title>
-      
-
+        <List isLoading={isLoading} hasError={hasError}>
+          Movies
+        </List>
       </Page.Content>
     );
   }
