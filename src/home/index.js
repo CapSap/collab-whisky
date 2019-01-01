@@ -47,6 +47,9 @@ class HomePage extends React.Component {
         <Title>Latest Movies</Title>
         <List isLoading={isLoading} hasError={hasError}>
           Movies
+          {payload.data.map(latest => (
+            latest.length
+          ))}
         </List>
       </Page.Content>
     );
