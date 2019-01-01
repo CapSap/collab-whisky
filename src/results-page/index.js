@@ -51,7 +51,7 @@ class ResultsPage extends React.Component {
                   commonStyles.flex,
                   commonStyles.flexAuto,
                   commonStyles.flexColumn
-                )}  
+                )}
               >
                 <Heading>{item.title}</Heading>
                 <SubHeading>{item.vote_average}</SubHeading>
