@@ -33,7 +33,6 @@ class HomePage extends React.Component {
   render() {
     const { isLoading, hasError, payload } = this.props;
     console.log(payload);
-    console.log(isLoading);
 
     if (isLoading) {
       return <div>Loading</div>;
@@ -50,6 +49,7 @@ class HomePage extends React.Component {
         <Title>Latest Movies</Title>
         <List isLoading={isLoading} hasError={hasError}>
           Movies
+          {payload}
         </List>
       </Page.Content>
     );
