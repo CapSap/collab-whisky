@@ -45,11 +45,14 @@ class HomePage extends React.Component {
     return (
       <Page.Content column>
         <Title>Latest Movies</Title>
+
         <List isLoading={isLoading} hasError={hasError}>
-          Movies
-          {payload.data.map(latest => (
-            latest.length
+          {payload.data.map(item => (
+            <List.Item key={item.id}>
+              <Heading>{item.title}</Heading>
+            </List.Item>
           ))}
+          M
         </List>
       </Page.Content>
     );
