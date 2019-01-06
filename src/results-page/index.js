@@ -53,7 +53,10 @@ class ResultsPage extends React.Component {
                   commonStyles.flexColumn
                 )}
               >
-                <Heading>{item.title}</Heading>
+                <Heading>
+                  {item.title}
+                  {item.name}
+                </Heading>
                 <SubHeading>{item.vote_average}</SubHeading>
                 <p>{item.release_date}</p>
                 <p>{item.overview}</p>
