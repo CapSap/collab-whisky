@@ -47,12 +47,7 @@ class HomePage extends React.Component {
         <Title>Latest Movies</Title>
 
         <List isLoading={isLoading} hasError={hasError}>
-          {payload.data.map(item => (
-            <List.Item key={item.id}>
-              <Heading>{item.title}</Heading>
-            </List.Item>
-          ))}
-          M
+          T
         </List>
       </Page.Content>
     );
