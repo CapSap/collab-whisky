@@ -47,7 +47,12 @@ class HomePage extends React.Component {
         <Title>Latest Movies</Title>
 
         <List isLoading={isLoading} hasError={hasError}>
-          T
+            <List.Item key={1234}>
+              <Heading>
+                testing
+              </Heading>
+            </List.Item>
+          Test         
         </List>
       </Page.Content>
     );
