@@ -34,6 +34,7 @@ class HomePage extends React.Component {
     const { isLoading, hasError, payload } = this.props;
     console.log('isLoading: ', isLoading);
     console.log('payload: ', payload);
+
     /*
       Our reducer sends the value of "payload" directly here.
 
@@ -92,6 +93,10 @@ class HomePage extends React.Component {
       return <div>Error!</div>;
     }
 
+    if (isEmpty(payload)) {
+      return null;
+    }
+
     return (
       <Page.Content column>
         <Title>Latest Movies</Title>
@@ -105,14 +110,26 @@ class HomePage extends React.Component {
               </List.Item>
             ))}
 
-            This is not going to work because when rendering the First time.
-            Our payload is null, yet we are trying to get the "data" field
-            off of something that is null...which is impossible and that's
-            where the application fails.
+            This is not going to work because:
+            
+            1) when rendering the First time, our payload is null,
+            yet we are trying to get the "data" field off of something
+            that is null...which is impossible and that's where the
+            application fails.
+            2) we do not need to iterate over a list of items here.
+            This asynchronous action returns detailed information
+            on 1 particular movie. Therefore payload.data is in the form
+            of an object instead of an array. We can simply display
+            the values from the object directly onto the page.
 
             You can do an empty check for payload above (and return null) to
             prevent React from ever arriving to this point in time.
           */}
+          {payload.data.map(item => (
+            <List.Item key={item.id}>
+              <Heading>{item.title}</Heading>
+            </List.Item>
+          ))}
           <List.Item key={1234}>
             <Heading>testing</Heading>
           </List.Item>
