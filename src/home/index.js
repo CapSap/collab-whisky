@@ -77,6 +77,11 @@ class HomePage extends React.Component {
               isLoading: false,
               hasError: false,
             }
+
+      You can take a look at what payload is by opening the browser console,
+      right-click on the page and choose "inspect". Click on "payload" to
+      drill down and see its value. and click "data" within "payload" to see
+      its value and available key-value pairs within it that can be displayed.
     */
 
     if (isLoading) {
