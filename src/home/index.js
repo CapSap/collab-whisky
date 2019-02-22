@@ -125,11 +125,6 @@ class HomePage extends React.Component {
             You can do an empty check for payload above (and return null) to
             prevent React from ever arriving to this point in time.
           */}
-          {payload.data.map(item => (
-            <List.Item key={item.id}>
-              <Heading>{item.title}</Heading>
-            </List.Item>
-          ))}
           <List.Item key={1234}>
             <Heading>testing</Heading>
           </List.Item>
