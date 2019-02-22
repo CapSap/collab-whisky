@@ -32,7 +32,52 @@ class HomePage extends React.Component {
 
   render() {
     const { isLoading, hasError, payload } = this.props;
-    console.log(payload);
+    console.log('isLoading: ', isLoading);
+    console.log('payload: ', payload);
+    /*
+      Our reducer sends the value of "payload" directly here.
+
+      NOTE:
+        Because of our middleware that listens to asynchronous actions,
+        the value of "payload" will change 3 times!
+        
+        First time:
+          When we first arrive to create this component, before we
+          have anything set. Before we even fetchMovies(). Payload is undefined
+
+        Second time:
+          We fired off the fetchMovies() action and our middleware has
+          transformed it from:
+            action = {
+              type: 'latestmovies/FETCH_LATEST_MOVIES',
+              payload: axios.get(encodeURI(url))
+            }
+
+          to something like this:
+            action = {
+              type: 'latestmovies/FETCH_LATEST_MOVIES',
+              payload: null,
+              isLoading: true,
+              hasError: false,
+            }
+
+        Third time:
+          The promise has resolved with data:
+            action = {
+              type: 'latestmovies/FETCH_LATEST_MOVIES',
+              payload: {
+                data: {
+                  ...blah blah blah
+                },
+                other,
+                server,
+                stuff,
+                here,
+              },
+              isLoading: false,
+              hasError: false,
+            }
+    */
 
     if (isLoading) {
       return <div>Loading</div>;
@@ -47,12 +92,26 @@ class HomePage extends React.Component {
         <Title>Latest Movies</Title>
 
         <List isLoading={isLoading} hasError={hasError}>
-            <List.Item key={1234}>
-              <Heading>
-                testing
-              </Heading>
-            </List.Item>
-          Test         
+          {/*
+            You tried this:
+            {payload.data.map(item => (
+              <List.Item key={item.id}>
+                <Heading>{item.title}</Heading>
+              </List.Item>
+            ))}
+
+            This is not going to work because when rendering the First time.
+            Our payload is null, yet we are trying to get the "data" field
+            off of something that is null...which is impossible and that's
+            where the application fails.
+
+            You can do an empty check for payload above (and return null) to
+            prevent React from ever arriving to this point in time.
+          */}
+          <List.Item key={1234}>
+            <Heading>testing</Heading>
+          </List.Item>
+          Test
         </List>
       </Page.Content>
     );
