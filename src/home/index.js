@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Page from 'components/Page';
 import isEmpty from 'lodash/isEmpty';
+import conf from 'conf';
+
 import { Title, Heading, SubHeading } from 'components/typography';
 import List from 'components/List';
 import commonStyles from 'commonStyles';
@@ -32,7 +34,9 @@ class HomePage extends React.Component {
 
   render() {
     const { isLoading, hasError, payload } = this.props;
-    console.log(payload);
+    if (isEmpty(payload)) {
+      return null;
+    }
 
     if (isLoading) {
       return <div>Loading</div>;
@@ -44,15 +48,24 @@ class HomePage extends React.Component {
 
     return (
       <Page.Content column>
-        <Title>Latest Movies</Title>
+        <Title>Latest Movie</Title>
 
-        <List isLoading={isLoading} hasError={hasError}>
-            <List.Item key={1234}>
+        <List isLoading={isLoading} hasError={hasError}>  
+        <img src={`${conf.IMAGE_URL}/w500${payload.data.poster_path}`} alt={payload.data.title} height="300" />
+          <List.Item key={payload.data.id}>
+              <div className={classNames(
+                  commonStyles.flex,
+                  commonStyles.flexAuto,
+                  commonStyles.flexColumn
+                )}>                
               <Heading>
-                testing
+                {payload.data.title}                
               </Heading>
+              <SubHeading>{payload.data.vote_average}</SubHeading>
+              <p>{payload.data.release_date}</p>
+              <p>{payload.data.overview}</p>
+              </div>
             </List.Item>
-          Test         
         </List>
       </Page.Content>
     );
