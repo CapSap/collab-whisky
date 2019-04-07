@@ -129,14 +129,13 @@ class HomePage extends React.Component {
             prevent React from ever arriving to this point in time.
           */}
           
-            <img src={`${conf.IMAGE_URL}/w500${payload.data.poster_path}`} alt={payload.data.title} height="300" />
+            <img src={`${conf.IMAGE_URL}/w500${payload.data.poster_path}`} alt={payload.data.title}  height="200" />
           <List.Item>
               <div>                
               <Heading>
                 {payload.data.title}                
               </Heading>
-              <SubHeading>{payload.data.vote_average}</SubHeading>
-              <p>{payload.data.release_date}</p>
+              <SubHeading>{payload.data.release_date}</SubHeading>
               <p>{payload.data.overview}</p>
               </div>
           </List.Item>          
